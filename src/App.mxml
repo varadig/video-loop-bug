@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<mxml:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mxml="library://ns.feathersui.com/mxml"
+                  creationComplete="creationCompleteHandler(event)" skipUnchangedFrames="false">
+    <mxml:layout>
+        <mxml:AnchorLayout/>
+    </mxml:layout>
+
+    <mxml:VideoPlayer id="videoPlayer1"
+                      netStreamFactory="this.nsFactory"
+                      videoSource="{this.videoSource}"
+                      visible="{!this.isVideo2Playing}"
+                      ready="videoPlayer1_readyHandler(event)"
+                      complete="videoPlayer1_completeHandler(event)">
+        <mxml:layout>
+            <mxml:AnchorLayout/>
+        </mxml:layout>
+        <mxml:ImageLoader id="loader1" verticalAlign="middle" scaleMode="noBorder" scaleContent="true">
+            <mxml:layoutData>
+                <mxml:AnchorLayoutData percentWidth="100" percentHeight="100"/>
+            </mxml:layoutData>
+        </mxml:ImageLoader>
+        <mxml:layoutData>
+            <mxml:AnchorLayoutData percentHeight="100" percentWidth="100"/>
+        </mxml:layoutData>
+    </mxml:VideoPlayer>
+    <mxml:VideoPlayer id="videoPlayer2"
+                      netStreamFactory="this.nsFactory"
+                      videoSource="{this.videoSource}"
+                      visible="{this.isVideo2Playing}"
+                      ready="videoPlayer2_readyHandler(event)"
+                      complete="videoPlayer2_completeHandler(event)">
+        <mxml:layout>
+            <mxml:AnchorLayout/>
+        </mxml:layout>
+        <mxml:ImageLoader id="loader2" verticalAlign="middle" scaleMode="noBorder" scaleContent="true">
+            <mxml:layoutData>
+                <mxml:AnchorLayoutData percentWidth="100" percentHeight="100"/>
+            </mxml:layoutData>
+        </mxml:ImageLoader>
+        <mxml:layoutData>
+            <mxml:AnchorLayoutData percentHeight="100" percentWidth="100"/>
+        </mxml:layoutData>
+
+    </mxml:VideoPlayer>
+
+    <fx:Script><![CDATA[
+        import starling.events.Event;
+
+        [Bindable]
+        private var isVideo2Playing:Boolean;
+
+
+        protected function videoPlayer1_readyHandler(event:starling.events.Event):void {
+            loader1.source = videoPlayer1.texture;
+        }
+
+        private function videoPlayer2_readyHandler(event:starling.events.Event):void {
+            loader2.source = videoPlayer2.texture;
+            videoPlayer2.pause();
+        }
+
+        protected function videoPlayer1_completeHandler(event:starling.events.Event):void {
+            this.isVideo2Playing = true;
+            this.videoPlayer2.play();
+            this.videoPlayer1.play();
+            this.videoPlayer1.pause();
+        }
+
+        private function videoPlayer2_completeHandler(event:starling.events.Event):void {
+            this.isVideo2Playing = false;
+            this.videoPlayer1.play();
+            this.videoPlayer2.play();
+            this.videoPlayer2.pause();
+        }
+
+        [Bindable]
+        private var videoSource:String;
+
+
+        protected function nsFactory(connection:NetConnection):NetStream {
+            var ns:NetStream = new NetStream(connection);
+            ns.useHardwareDecoder = true;
+            return ns;
+        }
+
+        private function creationCompleteHandler(event:Event):void {
+            this.videoSource = 'example.mp4';
+        }
+        ]]></fx:Script>
+
+</mxml:Application>

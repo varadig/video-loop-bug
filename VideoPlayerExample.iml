@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="Flex" version="4">
+  <component name="FlexBuildConfigurationManager" active="VideoPlayerExample">
+    <configurations>
+      <configuration name="VideoPlayerExample" target-platform="Desktop" main-class="App" output-file="VideoPlayerExample.swf" output-folder="$MODULE_DIR$/out/production/VideoPlayerExample">
+        <dependencies target-player="30.0">
+          <entries>
+            <entry library-name="TopcoatLightMobileTheme" library-level="application">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="feathers_libs" library-level="application">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-name="starling-src" library-level="application">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
+          <sdk name="air30-feathers3.5.0" />
+        </dependencies>
+        <compiler-options>
+          <option name="additionalOptions" value="-preloader= -default-frame-rate=60" />
+        </compiler-options>
+        <packaging-air-desktop use-generated-descriptor="false" custom-descriptor-path="$MODULE_DIR$/src/App-app.xml" package-file-name="VideoPlayerExample">
+          <files-to-package>
+            <FilePathAndPathInPackage file-path="$MODULE_DIR$/assets" path-in-package="." />
+          </files-to-package>
+        </packaging-air-desktop>
+        <packaging-android />
+        <packaging-ios />
+      </configuration>
+    </configurations>
+    <compiler-options />
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/assets" isTestSource="false" />
+    </content>
+    <orderEntry type="jdk" jdkName="air30-feathers3.5.0" jdkType="Flex SDK Type (new)" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="TopcoatLightMobileTheme" level="application" />
+    <orderEntry type="library" exported="" name="feathers_libs" level="application" />
+    <orderEntry type="library" exported="" name="starling-src" level="application" />
+  </component>
+</module>
